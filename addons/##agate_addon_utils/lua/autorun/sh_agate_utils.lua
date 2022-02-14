@@ -73,10 +73,10 @@ function AgateUtil:LoadAddon(addon_name, prioritized)
      if table.HasValue(AgateUtil.__loaded, addon_name) then return end
 
      if not prioritized and ix == nil and not table.HasValue(AgateUtil.__addonQueue, addon_name) then
-          table.Add(AgateUtil.__addonQueue, addon_name)
+          table.insert(AgateUtil.__addonQueue, addon_name)
      else
           __LoadAddon(addon_name)
-          table.Add(AgateUtil.__loaded, addon_name)
+          table.insert(AgateUtil.__loaded, addon_name)
           MsgC(red, "[Agate Addon Util] ", yellow, purple, addon_name, yellow, " has been successfully activated!\n\n")
      end
 end
@@ -94,7 +94,7 @@ end
 hook.Add("InitializedSchema", "addon_loader", function()
      for _, v in ipairs(AgateUtil.__addonQueue) do
           __LoadAddon(v)
-          table.Add(AgateUtil.__loaded, v)
+          table.insert(AgateUtil.__loaded, v)
           MsgC(red, "[Agate Addon Util] ", yellow, addon_name .. " has been successfully activated!\n\n")
      end
 end)
